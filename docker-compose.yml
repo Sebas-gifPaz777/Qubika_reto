@@ -1,0 +1,11 @@
+services:
+  chromadb:
+    image: chromadb/chroma
+    container_name: chromadb
+    ports:
+      - "8000:8000" # Exponer el puerto 8000 para la API de ChromaDB
+    volumes:
+      - chromadb_data:/data # Persistencia de datos
+
+volumes:
+  chromadb_data:
