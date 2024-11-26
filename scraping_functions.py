@@ -21,10 +21,8 @@ def scrape_content(url, type):
         for paragraph in paragraphs:    
             for child in paragraph.children:
                 if child.name == "b":
-                    print("Entra bold")
                     content +=f"{child.get_text(strip=True)} "
                 elif child.name is None:
-                    print("Entra no bold")
                     content+=child.strip()+" "
 
         new_data+=f"{title} \n{content}" 

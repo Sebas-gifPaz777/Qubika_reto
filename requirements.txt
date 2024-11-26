@@ -1,9 +1,10 @@
 streamlit
+chromadb
+numpy
+sentence-transformers
+google.generativeai
+transformers
+gTTS
 beautifulsoup4
 requests
 langchain
-chromadb
-google.generativeai
-gtts
-sentence-transformers
-transformers

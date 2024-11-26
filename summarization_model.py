@@ -1,6 +1,10 @@
 import re
 
-def split_text(text, max_length=1024):
+def dividir_texto(texto, tamaño=2000):
+    fragmentos = [texto[i:i+tamaño] for i in range(0, len(texto), tamaño)]
+    return fragmentos
+
+def split_text(text, max_length=1000):
     sentences = text.split(". ")  # Dividir por oraciones
     chunks = []
     current_chunk = ""
@@ -19,11 +23,15 @@ def split_text(text, max_length=1024):
     return chunks
 
 def summarize(text, summarizer):
-
+    
+    text = dividir_texto(text)[0]
+    print(f"Text: {text}")
     news = split_text(text)
     summaries = []
     for chunk in news:
-        summary = summarizer(chunk, max_length=100, min_length=50, do_sample=False)[0]['summary_text']
+        prompt = f'Haz un resumen de esta fracción de la noticia: {chunk}'
+        response = summarizer.generate_content((prompt))
+        summary = response.text
         summaries.append(summary)
     final_summary = " ".join(summaries)
     
